@@ -4,6 +4,7 @@ import { dbConnect } from './db/db.js'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import authRoutes from './routes/auth.routes.js'
+import cookieParser from 'cookie-parser'
 
 
 dotenv.config()
@@ -14,6 +15,7 @@ app.use(express.json({
     limit: '5mb'
 }))
 app.use(cors())
+app.use(cookieParser())
 app.use('/api/auth/', authRoutes)
 
 
