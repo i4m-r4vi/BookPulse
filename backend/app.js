@@ -17,6 +17,8 @@ app.use(express.json({
 app.use(cors())
 app.use(cookieParser())
 app.use('/api/auth/', authRoutes)
+app.set('view engine','ejs')
+app.use(express.static('public'))
 
 
 const port = 3000 || process.env.PORT
