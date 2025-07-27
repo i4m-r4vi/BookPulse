@@ -79,7 +79,7 @@ export const forgotPassowrdRequest = async(req, res) => {
             expiresIn: '10m'
         })
         // `${process.env.BACKENDURL}/${user._id}/${token}/`||
-        const resetUrl = `http://127.0.0.1:3000/api/auth/forgotPassword/${user._id}/${token}`
+        const resetUrl = `http://127.0.0.1:3000/api/auth/forgotPassword/${user._id}/${token}` || `${process.env.BACKENDURL}/${user._id}/${token}/`
         const transporter = await nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
