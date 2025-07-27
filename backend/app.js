@@ -5,18 +5,29 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import authRoutes from './routes/auth.routes.js'
 import cookieParser from 'cookie-parser'
+import cloudinary from 'cloudinary'
+import bookRoutes from './routes/book.routes.js'
 
 
 dotenv.config()
 
 const app = express()
-app.use(bodyParser.urlencoded({ extended: true }))
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API,
+    api_secret: process.env.CLOUDINARY_SECRET
+})
+
 app.use(express.json({
-    limit: '5mb'
+    limit: '5mb',
 }))
+app.use(bodyParser.urlencoded({ extended: true,limit:'5mb' }))
+
 app.use(cors())
 app.use(cookieParser())
 app.use('/api/auth/', authRoutes)
+app.use('/api/book',bookRoutes)
 app.set('view engine','ejs')
 app.use(express.static('public'))
 

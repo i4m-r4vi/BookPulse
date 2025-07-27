@@ -6,9 +6,9 @@ const bookSchema = new mongoose.Schema({
         required:true
     },
     bookImgUrl:{
-        title:String,   
+        type:String,
     },
-    decription:{
+    description:{
         type:String,
         required:true
     },
@@ -24,7 +24,7 @@ const bookSchema = new mongoose.Schema({
         type:Number,
         required:true
     }
-})
+},{timestamps:true})
 
 const bookModel = mongoose.model('book',bookSchema)
 
