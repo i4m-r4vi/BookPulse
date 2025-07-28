@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const issuedBooks = new mongoose.Schema({
-    studentId:{
+    UserId:{
         type:mongoose.Schema.ObjectId,
         ref:'user',
         required:true
@@ -21,11 +21,10 @@ const issuedBooks = new mongoose.Schema({
         required:true
     },
     returnedDate:{
-        type:Date,
-        required:true
+        type:Date
     }
 })
 
-const issuedBooksModel = mongoose.model('book',issuedBooks)
+const issuedBooksModel = mongoose.model('issuedBooks',issuedBooks)
 
 export default issuedBooksModel
