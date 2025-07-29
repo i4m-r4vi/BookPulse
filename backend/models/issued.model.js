@@ -22,7 +22,8 @@ const issuedBooks = new mongoose.Schema({
     },
     returnedDate:{
         type:Date
-    }
+    },
+    returned:Boolean
 })
 
 const issuedBooksModel = mongoose.model('issuedBooks',issuedBooks)
