@@ -19,7 +19,8 @@ const authSchema = new mongoose.Schema({
     role:{
         type:String,
         enum:["student","admin","librarian","faculty"],
-        required:true
+        required:true,
+        default:"student"
     },
 })
 
