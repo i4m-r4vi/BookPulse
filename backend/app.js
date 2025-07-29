@@ -9,6 +9,7 @@ import cloudinary from 'cloudinary'
 import bookRoutes from './routes/book.routes.js'
 import issuedRoutes from './routes/issued.routes.js'
 import requestRoutes from './routes/request.routes.js'
+import { swaggerSpec,swaggerUi } from './swagger.js'
 
 
 dotenv.config()
@@ -32,6 +33,7 @@ app.use('/api/auth/', authRoutes)
 app.use('/api/book',bookRoutes)
 app.use('/api/issuedProcess',issuedRoutes)
 app.use('/api/request',requestRoutes)
+app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerSpec))
 app.set('view engine','ejs')
 app.use(express.static('public'))
 
