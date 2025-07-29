@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const requestBook = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+    userId: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'user',
         required: true
     },
-    book: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Book",
+    bookId: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'book',
         required: true
     },
     requestDate: {
@@ -20,6 +20,8 @@ const requestBook = new mongoose.Schema({
         enum: ["pending", "approved", "rejected"],
         default: "pending"
     }
-});
+},{timestamps:true});
 
-module.exports = mongoose.model("Request", requestBook);
+const requestBookModel = mongoose.model("requestBook", requestBook);
+
+export default requestBookModel
