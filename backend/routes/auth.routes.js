@@ -3,6 +3,41 @@ import { forgotPassowrdRequest, getForgotPassword, isMe, login, logout, register
 import { protectedRoutes } from '../middleware/protectedRoutes.js';
 
 const authRoutes = express.Router();
+/**
+ * @swagger
+ * paths:
+ *   /auth/register:
+ *     post:
+ *       summary: Register a new user
+ *       tags:
+ *         - Users
+ *       requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               required:
+ *                 - name
+ *                 - email
+ *                 - password
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 password:
+ *                   type: string
+ *                 role:
+ *                   type: string
+ *                   enum: [student, faculty, librarian, admin]
+ *       responses:
+ *         '201':
+ *           description: User registered successfully
+ */
+
+
+
 
 authRoutes.post('/register',register)
 authRoutes.post('/login',login)

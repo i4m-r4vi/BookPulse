@@ -14,14 +14,14 @@ const bookRoutes = express.Router();
  *     tags: [Books]
  *     responses:
  *       200:
- *         description: List of books
+ *         description: List of book
  * /book/6887a6204e85ad2bbb4f2e03:
  *   get:
  *     summary: Get books Specific Id 
  *     tags: [Books]
  *     responses:
  *       200:
- *         description: List of books
+ *         description: Specific book
  */
 
 bookRoutes.get('/',getAllBooks)

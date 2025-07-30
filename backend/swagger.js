@@ -15,11 +15,14 @@ const options = {
     },
     servers: [
       {
+        url: `${process.env.BACKENDURL}`,
+      },
+      {
         url: `${process.env.BACKENDURL}/api/`,
       },
     ],
   },
-  apis: ["./routes/*.js"], // wherever your routes are defined
+  apis: ["./app.js","./routes/*.js"], // wherever your routes are defined
 };
 
 const swaggerSpec = swaggerJSDoc(options);

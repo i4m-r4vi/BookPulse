@@ -24,7 +24,7 @@ export const register = async (req,res) => {
         }
         const authRegister = await authModel.create({name,email,password:hashPassword,role})
         await authRegister.save()
-        res.status(200).json({message:"User Created"})
+        res.status(201).json({message:"User Created"})
     } catch (error) {
         console.log(`Error in register : ${error}`);
         res.status(500).json({ error: "Internal Server Error" })
