@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>BookPulse API Docs</title>
+  <link rel="stylesheet" href="/swagger-ui/swagger-ui.css" />
+</head>
+
+<body>
+  <div id="swagger-ui"></div>
+  
+  <script src="/swagger-ui/swagger-ui-bundle.js"></script>
+  <script src="/swagger-ui/swagger-ui-standalone-preset.js"></script>
+  <script>
+    window.onload = () => {
+      SwaggerUIBundle({
+        url: "/swagger.yaml", // or JSON
+        dom_id: "#swagger-ui",
+        presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+        layout: "BaseLayout",
+        withCredentials: true // ✅ Send cookies
+      });
+    };
+  </script>
+</body>
+
+</html>

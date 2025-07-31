@@ -115,20 +115,6 @@ paths:
         - cookieAuth: []  
       responses:
         "200":
-          description: Returns user information
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Ravishankar
-                  email:
-                    type: string
-                    example: ravi@example.com
-                  role:
-                    type: string
-                    enum: [student, faculty, librarian, admin]
+          description: Returns user information 
         "401":
           description: Unauthorized - missing or invalid token
