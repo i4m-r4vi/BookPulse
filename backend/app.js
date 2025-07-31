@@ -30,7 +30,11 @@ app.use(express.json({
 }))
 app.use(bodyParser.urlencoded({ extended: true, limit: '5mb' }))
 
-app.use(cors())
+app.use(cors({
+    origin: true,
+    credentials: true
+}
+))
 app.use(cookieParser())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('/api/auth/', authRoutes)

@@ -112,7 +112,7 @@ paths:
       tags:
         - Auth
       security:
-        - cookieAuth: []  # Requires cookie-based login
+        - cookieAuth: []  
       responses:
         "200":
           description: Returns user information

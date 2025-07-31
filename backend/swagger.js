@@ -32,7 +32,7 @@ const swaggerDocument = {
       cookieAuth: {
         type: "apiKey",
         in: "cookie",
-        name: "bookpulse", // this must match your actual cookie name
+        name:"bookpulse"
       },
     },
   },
