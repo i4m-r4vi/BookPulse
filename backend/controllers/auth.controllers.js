@@ -46,9 +46,9 @@ export const login = async(req,res)=>{
         if(!isCorrectPassword){
             return res.status(400).json({error:"Invalid password"})
         }
-        await generateToken(findUser._id,res);
+        const token = await generateToken(findUser._id,res);
         res.status(200).json({message:"Successfully Login",
-            cookie:req.cookies.bookpulse
+            bookpulse:token
         })
     } catch (error) {
         console.log(`Error in login : ${error}`);

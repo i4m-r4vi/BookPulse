@@ -13,7 +13,7 @@ export const generateToken = async(id,res)=>{
             sameSite: 'None',  // Allow across sites 
             secure: true,
         })
-        
+        return token
     } catch (error) {
         console.log(`Error in generateToken : ${error}`);
         res.status(500).json({ error: "Internal Server Error" })
