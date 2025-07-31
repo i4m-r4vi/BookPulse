@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: BookPulse Auth API
+  title: BookPulse_Auth_API
   version: 1.0.0
   description: Authentication endpoints for BookPulse users
 

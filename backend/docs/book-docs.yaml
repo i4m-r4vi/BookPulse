@@ -1,0 +1,250 @@
+openapi: 3.0.0
+info:
+  title: BookPulse_Book_API
+  version: 1.0.0
+  description: Authentication endpoints for BookPulse users
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: bookpulse  
+
+paths:
+  /book/addBook:
+    post:
+      summary: Register a new book *use imageUrl as base64*
+      tags:
+        - Book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - bookImgUrl 
+                - description
+                - author
+                - totalCopies
+                - availableCopies
+              properties:
+                title:
+                  type: string
+                bookImgUrl:
+                  type: string
+                description:
+                  type: string
+                author:
+                  type: string
+                totalCopies:
+                  type: number
+                availableCopies:
+                  type: number
+      responses:
+        "200":
+          description: Added Book Successfully
+
+  /book:
+    get:
+      summary: Get all Books
+      tags:
+        - Book
+      responses:
+        "200":
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  books:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      title:
+                        type: string
+                      bookImgUrl:
+                        type: string
+                        format: uri
+                      description:
+                        type: string
+                      author:
+                        type: string
+                      totalCopies:
+                        type: integer
+                      availableCopies:
+                        type: integer
+              example:
+                books:
+                  _id: "688b46582fb1cee446a96cef"
+                  title: "Tamil"
+                  bookImgUrl: "https://res.cloudinary.com/ddib0fewz/image/upload/v1753957977/bjjmo4ajugi2suuqaebc.jpg"
+                  description: "Tamil Book"
+                  author: "Ravishankar"
+                  totalCopies: 250
+                  availableCopies: 250
+                  createdAt: "2025-07-31T10:32:56.875Z"
+                  updatedAt: "2025-07-31T10:32:56.875Z"
+                  __v: 0
+          
+
+  /book/{id}:
+      get:
+        summary: Get a book by ID
+        tags:
+          - Book
+        parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: string
+            description: The ID of the book to retrieve
+        responses:
+          "200":
+            description: Book details
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    title:
+                      type: string
+                    bookImgUrl:
+                      type: string
+                      format: uri
+                    description:
+                      type: string
+                    author:
+                      type: string
+                    totalCopies:
+                      type: integer
+                    availableCopies:
+                      type: integer
+                    createdAt:
+                      type: string
+                      format: date-time
+                    updatedAt:
+                      type: string
+                      format: date-time
+                    __v:
+                      type: integer
+                example:
+                  _id: "688b46582fb1cee446a96cef"
+                  title: "Tamil"
+                  bookImgUrl: "https://res.cloudinary.com/ddib0fewz/image/upload/v1753957977/bjjmo4ajugi2suuqaebc.jpg"
+                  description: "Tamil Book"
+                  author: "Ravishankar"
+                  totalCopies: 250
+                  availableCopies: 250
+                  createdAt: "2025-07-31T10:32:56.875Z"
+                  updatedAt: "2025-07-31T10:32:56.875Z"
+                  __v: 0
+
+  /book/updateBook/{id}:
+    put:
+      summary: Update a book by ID
+      tags:
+        - Book
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the book to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                bookImgUrl:
+                  type: string
+                  format: uri
+                description:
+                  type: string
+                author:
+                  type: string
+                totalCopies:
+                  type: integer
+                availableCopies:
+                  type: integer
+            example:
+              title: "Tamil - Updated"
+              bookImgUrl: "https://res.cloudinary.com/ddib0fewz/image/upload/v1753957977/bjjmo4ajugi2suuqaebc.jpg"
+              description: "Updated description"
+              author: "Ravishankar K"
+              totalCopies: 300
+              availableCopies: 280
+      responses:
+        "200":
+          description: Book updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  updatedBook:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      title:
+                        type: string
+                      bookImgUrl:
+                        type: string
+                        format: uri
+                      description:
+                        type: string
+                      author:
+                        type: string
+                      totalCopies:
+                        type: integer
+                      availableCopies:
+                        type: integer
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+                      __v:
+                        type: integer
+              example:
+                message: "Book updated successfully"
+                updatedBook:
+                  _id: "688b46582fb1cee446a96cef"
+                  title: "Tamil - Updated"
+                  bookImgUrl: "https://res.cloudinary.com/ddib0fewz/image/upload/v1753957977/bjjmo4ajugi2suuqaebc.jpg"
+                  description: "Updated description"
+                  author: "Ravishankar K"
+                  totalCopies: 300
+                  availableCopies: 280
+
+  /book/deleteBook/{id}:
+      delete:
+        summary: Delete a book by ID
+        tags:
+          - Book
+        parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: string
+            description: The ID of the book to retrieve
+        responses:
+          "200":
+            description: Successfully Deleted
