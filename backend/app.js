@@ -9,7 +9,7 @@ import cloudinary from 'cloudinary'
 import bookRoutes from './routes/book.routes.js'
 import issuedRoutes from './routes/issued.routes.js'
 import requestRoutes from './routes/request.routes.js'
-import { swaggerSpec, swaggerUi } from './swagger.js'
+import { swaggerDocument, swaggerUi } from './swagger.js'
 
 
 dotenv.config()
@@ -22,6 +22,9 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET
 })
 
+
+
+
 app.use(express.json({
     limit: '5mb',
 }))
@@ -29,26 +32,18 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '5mb' }))
 
 app.use(cors())
 app.use(cookieParser())
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('/api/auth/', authRoutes)
 app.use('/api/book', bookRoutes)
 app.use('/api/issuedProcess', issuedRoutes)
 app.use('/api/request', requestRoutes)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 
 const port = 3000 || process.env.PORT
-/**
- * @swagger
- * /:
- *   get:
- *     summary: Server is Working or Not
- *     tags: [Server is Live or Not]
- *     responses:
- *       200: 
- *          description: Server Details 
-*/
+
 app.get('/', (req, res) => {
     res.status(200).json({ message: "The App is Working" })
 })

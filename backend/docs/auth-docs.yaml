@@ -1,0 +1,134 @@
+openapi: 3.0.0
+info:
+  title: BookPulse Auth API
+  version: 1.0.0
+  description: Authentication endpoints for BookPulse users
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: bookpulse  # JWT cookie name
+
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - password
+                - role
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+                  enum: [student, faculty, librarian, admin]
+      responses:
+        "201":
+          description: User registered successfully
+
+  /auth/login:
+    post:
+      summary: Login with Email and Password
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Login successful, cookie set
+          headers:
+            Set-Cookie:
+              description: JWT token set in HttpOnly cookie
+              schema:
+                type: string
+                example: bookpulse=; Path=/; HttpOnly; SameSite=Strict
+
+  /auth/logout:
+    post:
+      summary: Logout and clear auth cookie
+      tags:
+        - Auth
+      responses:
+        "200":
+          description: Logout successful. Cookie cleared.
+          headers:
+            Set-Cookie:
+              description: Clears the auth cookie
+              schema:
+                type: string
+                example: bookpulse=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly
+
+  /auth/forgot-password:
+    post:
+      summary: Send password reset email
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+      responses:
+        "200":
+          description: Password reset link sent
+
+  /auth/me:
+    get:
+      summary: Get currently authenticated user
+      tags:
+        - Auth
+      security:
+        - cookieAuth: []  # Requires cookie-based login
+      responses:
+        "200":
+          description: Returns user information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Ravishankar
+                  email:
+                    type: string
+                    example: ravi@example.com
+                  role:
+                    type: string
+                    enum: [student, faculty, librarian, admin]
+        "401":
+          description: Unauthorized - missing or invalid token

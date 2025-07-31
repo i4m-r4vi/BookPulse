@@ -47,7 +47,9 @@ export const login = async(req,res)=>{
             return res.status(400).json({error:"Invalid password"})
         }
         await generateToken(findUser._id,res);
-        res.status(200).json({message:"Successfully Login"})
+        res.status(200).json({message:"Successfully Login",
+            cookie:req.cookies.bookpulse
+        })
     } catch (error) {
         console.log(`Error in login : ${error}`);
         res.status(500).json({ error: "Internal Server Error" })
