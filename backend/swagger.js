@@ -25,7 +25,7 @@ const swaggerDocument = {
   },
   servers: [
     { url: `${process.env.BACKENDURL}/api/` },
-    { url:  process.env.BACKENDURL },
+    { url: process.env.BACKENDURL },
   ],
   components: {
     securitySchemes: {

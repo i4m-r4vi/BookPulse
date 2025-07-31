@@ -128,3 +128,19 @@ paths:
         200:
           description: User details
 
+  /auth/updateUser/{userId}:
+    post:
+      summary: update user role by only admin
+      tags:
+        - Auth
+      parameters:
+          - in: path
+            name: userId
+            required: true
+            schema:
+              type: string
+            description: The ID of the user to retrieve
+      responses:
+        "200":
+          description: user successfully updated
+

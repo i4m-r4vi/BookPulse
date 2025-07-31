@@ -6,7 +6,7 @@ export const issuedBooksUsers = async (req, res) => {
     try {
         const todayDate = new Date();
         const dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-        const { id } = req.params; 
+        const { bookId } = req.params; 
         const { userId } = req.body; 
         const findBook = await bookModel.findById(id);
         if (!findBook) {
@@ -16,7 +16,7 @@ export const issuedBooksUsers = async (req, res) => {
             return res.status(400).json({ error: "The book is not available in stock" });
         }
         const requestBook = await requestBookModel.findOne({
-            bookId:id,
+            bookId:bookId,
             userId:userId,
             status: "pending" 
         });

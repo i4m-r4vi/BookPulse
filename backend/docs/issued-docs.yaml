@@ -12,14 +12,14 @@ components:
       name: bookpulse 
 
 paths:
-  /issuedProcess/issuedBook/{id}:
+  /issuedProcess/issuedBook/{bookId}:
     post:
       summary: issue Book By Admin and Librarian
       tags:
         - Issue Book
       parameters:
           - in: path
-            name: id
+            name: bookId
             required: true
             schema:
               type: string

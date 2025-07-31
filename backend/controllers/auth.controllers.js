@@ -179,3 +179,20 @@ export const getAllUsers = async(req,res)=>{
         res.status(500).json({ message: "Internal server error." });
     }
 }
+
+export const updateUser = async(req,res)=>{
+    try {
+        const {userId} = req.params;
+        const {role} = req.body;
+        const getUser = await authModel.findById({_id:userId}).select("-password");
+        if(!getUser){
+            return res.status(400).json({error:"No Users Found"})
+        }
+        getUser.role = role || getUser;
+        await getUser.save()
+        res.status(200).json({updatedUser:getUser})
+    } catch (error) {
+        console.error("Error occurred during updateUser:", error);
+        res.status(500).json({ message: "Internal server error." });
+    }
+}

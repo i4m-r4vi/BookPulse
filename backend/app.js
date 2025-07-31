@@ -10,9 +10,7 @@ import bookRoutes from './routes/book.routes.js'
 import issuedRoutes from './routes/issued.routes.js'
 import requestRoutes from './routes/request.routes.js'
 import { swaggerUi,swaggerDocument } from './swagger.js'
-import * as path from "path";
-import { fileURLToPath } from "url";
-import YAML from 'yamljs'
+import  dueRemainder  from './cron/mailRemainder.js'
 
 dotenv.config()
 
@@ -52,5 +50,6 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     dbConnect()
+    dueRemainder()
     console.log(`The App is Listening on ${port}`)
 })

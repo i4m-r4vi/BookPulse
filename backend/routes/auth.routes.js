@@ -1,5 +1,5 @@
 import express from 'express'
-import { forgotPassowrdRequest, getAllUsers, getForgotPassword, isMe, login, logout, register, updatePassowrd } from '../controllers/auth.controllers.js';
+import { forgotPassowrdRequest, getAllUsers, getForgotPassword, isMe, login, logout, register, updatePassowrd, updateUser } from '../controllers/auth.controllers.js';
 import { protectedRoutes } from '../middleware/protectedRoutes.js';
 import { addProtectedRoutes } from '../middleware/addProtectedRoutes.js';
 
@@ -14,5 +14,6 @@ authRoutes.post('/forgot-password',forgotPassowrdRequest)
 authRoutes.post('/forgotPassword/:id/:token',updatePassowrd);
 authRoutes.get('/forgotPassword/:id/:token',getForgotPassword);
 authRoutes.get('/getAllUsers',protectedRoutes,addProtectedRoutes(["admin"]),getAllUsers)
+authRoutes.put('/updateUser/:userId',protectedRoutes,addProtectedRoutes(["admin"]),updateUser)
 
 export default authRoutes
