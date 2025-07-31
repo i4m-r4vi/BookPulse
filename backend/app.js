@@ -30,7 +30,6 @@ app.use(cors({
     origin: true,
     credentials: true
 }))
-
 app.use(express.json({
     limit: '5mb',
 }))
@@ -40,14 +39,9 @@ app.use('/api/auth/', authRoutes)
 app.use('/api/book', bookRoutes)
 app.use('/api/issuedProcess', issuedRoutes)
 app.use('/api/request', requestRoutes)
-
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-
 app.use("/swagger-ui", express.static(swaggerUiDist.absolutePath()));
-
-
-
 
 const port = 3000 || process.env.PORT
 

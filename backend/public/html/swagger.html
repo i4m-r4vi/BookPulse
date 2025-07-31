@@ -17,8 +17,8 @@
         url: "/swagger.yaml", // or JSON
         dom_id: "#swagger-ui",
         presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
-        layout: "BaseLayout",
-        withCredentials: true // ✅ Send cookies
+        layout: "StandaloneLayout",
+        withCredentials: true,
       });
     };
   </script>
