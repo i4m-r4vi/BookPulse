@@ -30,7 +30,7 @@ export const requestBook = async(req,res)=>{
 
 export const getAllRequest = async(req,res)=>{
     try {
-        const findRequest = await requestBookModel.find().sort({'createdAt':-1}) 
+        const findRequest = await requestBookModel.find().sort({'createdAt':-1}).populate({path:"userId",select:["-password","-__v"]}) .populate({path:"bookId",select:["-bookImgUrl","-totalCopies","-availableCopies","-createdAt","-updatedAt","-__v"]})
         if(!findRequest){
             return res.status(404).json({error:"No Request Found"})
         }

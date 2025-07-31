@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: BookPulse_Reuqest_API
+  version: 1.0.0
+  description: Request endpoints for BookPulse users
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: bookpulse 
+
+paths:
+  /request/requestBook/:
+    post:
+      summary: Request Book By Faculty and Student
+      tags:
+        - Request Book
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: string
+      responses:
+        "200":
+          description: Request Book Successfully
+
+
+  /request:
+    get:
+      summary: Get all Request Books
+      tags:
+        - Request Book
+      responses:
+        "200":
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      userId:
+                        type: string
+                      bookId:
+                        type: string
+                        format: uri
+                      status:
+                        type: string
+                      requestDate:
+                        type: string

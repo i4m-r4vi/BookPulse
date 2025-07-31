@@ -117,3 +117,14 @@ paths:
         200:
           description: User details
 
+  /auth/getAllUsers:
+    get:
+      summary: Get AllUsers
+      tags:
+        - Auth
+      security:
+        - cookieAuth: [bookpulse]
+      responses:
+        200:
+          description: User details
+

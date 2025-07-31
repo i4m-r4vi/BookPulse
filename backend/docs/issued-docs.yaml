@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: BookPulse_issue_API
+  version: 1.0.0
+  description: issue endpoints for BookPulse users
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: bookpulse 
+
+paths:
+  /issuedProcess/issuedBook/{id}:
+    post:
+      summary: issue Book By Admin and Librarian
+      tags:
+        - Issue Book
+      parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: string
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - UserId
+                properties:
+                  userId:
+                    type: string
+      responses:
+        "200":
+          description: issued Book Successfully
+
+  /issuedProcess/returnBook/{id}:
+    put:
+      summary: Return Book 
+      tags:
+        - Return Book
+      parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: string
+      responses:
+        "200":
+          description: Return Book Successfully
+
+  /issuedProcess/issuedBook:
+    get:
+      summary: get All Issued Book By Admin Only
+      tags:
+        - Issue Book
+      responses:
+        "200":
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      userId:
+                        type: string
+                      bookId:
+                        type: string
+                        format: uri
+                      issuedDate:
+                        type: string
+                      dueDate:
+                        type: string
+                      returned:
+                        type: boolean
+          
+            

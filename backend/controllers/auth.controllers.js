@@ -166,3 +166,16 @@ export const getForgotPassword = async (req, res) => {
         res.status(500).json({ message: "Internal server error." });
     }
 }
+
+export const getAllUsers = async(req,res)=>{
+    try {
+        const getUser = await authModel.find().select("-password");
+        if(!getUser){
+            return res.status(400).json({error:"No Users Found"})
+        }
+        res.status(200).json({user:getUser})
+    } catch (error) {
+        console.error("Error occurred during getAllUsers:", error);
+        res.status(500).json({ message: "Internal server error." });
+    }
+}

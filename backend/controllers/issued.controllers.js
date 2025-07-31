@@ -81,3 +81,9 @@ export const returnIssueBook = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const getAllIssuedBook = async(req,res)=>{
+  const getAllIssuedBook = await issuedBooksModel.find().populate({path:"UserId",select:["-password","-__v"]}) .populate({path:"bookId",select:["-bookImgUrl","-totalCopies","-availableCopies","-createdAt","-updatedAt","-__v"]})
+  res.status(200).json({ message: getAllIssuedBook });
+
+}

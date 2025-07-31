@@ -24,8 +24,8 @@ const swaggerDocument = {
     description: "BookPulse API by Ravi",
   },
   servers: [
-    { url: "http://127.0.0.1:3000/api/"||`${process.env.BACKENDURL}/api/` },
-    { url: "http://127.0.0.1:3000/" || process.env.BACKENDURL },
+    { url: `${process.env.BACKENDURL}/api/` },
+    { url:  process.env.BACKENDURL },
   ],
   components: {
     securitySchemes: {
@@ -44,8 +44,8 @@ const swaggerDocument = {
   paths: {
     ...authDoc.paths,
     ...bookDoc.paths,
-    // ...issuedDoc.paths,
-    // ...requestDoc.paths,
+    ...requestDoc.paths,
+    ...issuedDoc.paths
   },
 };
 
