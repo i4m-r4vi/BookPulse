@@ -7,7 +7,7 @@ dotenv.config()
 export const protectedRoutes = async(req,res,next)=>{
     try {
         const token = req.cookies.bookpulse;
-        console.log(token)
+        
         if(!token){
             return res.status(400).json({error:"Not Authorized"})
         }

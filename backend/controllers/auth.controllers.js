@@ -47,6 +47,7 @@ export const login = async(req,res)=>{
             return res.status(400).json({error:"Invalid password"})
         }
         const token = await generateToken(findUser._id,res);
+        
         res.status(200).json({message:"Successfully Login",
             bookpulse:token
         })

@@ -7,7 +7,6 @@ const authRoutes = express.Router();
 
 authRoutes.post('/register',register)
 authRoutes.post('/login',login)
-// authRoutes.post('/getToken',Gettoken)
 authRoutes.get('/me',protectedRoutes,isMe)
 authRoutes.post('/logout',logout)
 authRoutes.post('/forgot-password',forgotPassowrdRequest)

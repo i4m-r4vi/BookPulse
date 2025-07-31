@@ -9,7 +9,7 @@ components:
     cookieAuth:
       type: apiKey
       in: cookie
-      name: bookpulse  # JWT cookie name
+      name: bookpulse  
 
 paths:
   /auth/register:
@@ -108,13 +108,12 @@ paths:
 
   /auth/me:
     get:
-      summary: Get currently authenticated user
+      summary: Get logged-in user
       tags:
         - Auth
       security:
-        - cookieAuth: []  
+        - cookieAuth: [bookpulse]
       responses:
-        "200":
-          description: Returns user information 
-        "401":
-          description: Unauthorized - missing or invalid token
+        200:
+          description: User details
+

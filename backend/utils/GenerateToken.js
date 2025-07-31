@@ -7,7 +7,7 @@ export const generateToken = async(id,res)=>{
         const token = jwt.sign({id},process.env.JWT_SECRET,{
             expiresIn:'15d'
         })
-        res.cookie('bookpulse',token,{
+        res.cookie("bookpulse",token,{
             maxAge: 15 * 24 * 60 * 60 * 1000,
             httpOnly: true,    // Can't access via JavaScript
             sameSite: 'None',  // Allow across sites 
