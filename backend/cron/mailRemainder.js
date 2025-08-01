@@ -4,7 +4,7 @@ import issuedBooksModel from '../models/issued.model.js'
 
 
 const dueRemainder = () => {
-    cron.schedule("06 30 * * *", async () => {
+    cron.schedule("07 * * * *", async () => {
     console.log("Started Due Reminder Work");
 
     const tomorrow = new Date();
